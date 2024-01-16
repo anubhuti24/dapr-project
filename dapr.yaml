@@ -1,0 +1,11 @@
+version: 1
+apps:
+  - appDirPath: ./blogservice/
+    appID: blog-processor
+    daprHTTPPort: 3500
+    appPort: 8000
+    command: ["uvicorn", "app:app", "--reload"]
+  - appID: user-client
+    daprHTTPPort: 3501
+    appDirPath: ./userservice/
+    command: ["python3", "app.py"]
