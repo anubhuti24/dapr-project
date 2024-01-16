@@ -1,4 +1,6 @@
 version: 1
+common:
+  resourcesPath: ./components/
 apps:
   - appDirPath: ./blogservice/
     appID: blog-processor
@@ -9,3 +11,8 @@ apps:
     daprHTTPPort: 3501
     appDirPath: ./userservice/
     command: ["python3", "app.py"]
+  - appID: notify-client
+    daprHTTPPort: 3502
+    appPort: 8001
+    appDirPath: ./notifyservice/
+    command: ["uvicorn", "app:app", "--port", "8001", "--reload"]
