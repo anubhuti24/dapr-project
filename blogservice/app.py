@@ -19,7 +19,7 @@ def blogpost(payload: Blog):
     # To publish the blog
     requests.post(
         url='%s/v1.0/publish/%s/%s' % (base_url, PUBSUB_NAME, TOPIC),
-        json=jsonable_encoder(payload)
+        json=jsonable_encoder(payload),
     )
 
     time.sleep(1)
