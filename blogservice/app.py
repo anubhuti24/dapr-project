@@ -17,11 +17,10 @@ logging.info('Publishing to baseURL: %s, Pubsub Name: %s, Topic: %s' % (
 @app.post('/blogpost')
 def blogpost(payload: Blog):
     # To publish the blog
-    result = requests.post(
+    requests.post(
         url='%s/v1.0/publish/%s/%s' % (base_url, PUBSUB_NAME, TOPIC),
         json=jsonable_encoder(payload)
     )
-    time.sleep(1)
-    print("blogpost result", result)
 
+    time.sleep(1)
     return {"message": "Successfully posted blog."}

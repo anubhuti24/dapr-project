@@ -7,12 +7,12 @@ logging.basicConfig(level=logging.INFO)
 
 base_url = 'http://127.0.0.1:3500'
 
-headers = {'dapr-app-id': 'blog-processor','content-type': 'application/json'}
+headers = {'dapr-app-id': 'blog-processor', 'content-type': 'application/json'}
 
 payload = {
-        "title": "Dapr",
-        "userid": 5,
-        "content": "This is the dapr introduction."
+    "title": "Dapr",
+    "userid": 5,
+    "content": "This is the dapr introduction."
 }
 
 result = requests.post(
@@ -20,7 +20,6 @@ result = requests.post(
     data=json.dumps(payload),
     headers=headers
 )
-print(result)
-# print('Blog: ' + json.dumps(payload), flush=True)
+print(result.text)
 
 time.sleep(1)

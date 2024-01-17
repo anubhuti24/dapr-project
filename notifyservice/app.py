@@ -1,9 +1,10 @@
-import json
+import json, logging
 from fastapi import FastAPI
-from fastapi.encoders import jsonable_encoder
+
 
 app = FastAPI()
-sample_emails = ['mysticdocker@gmail.com']
+sample_emails = ['sample1@gmail.com', 'sample2@gmail.com', 'sample3@gmail.com']
+logging.basicConfig(level=logging.INFO)
 
 
 @app.get('/dapr/subscribe')
@@ -18,6 +19,9 @@ def subscribe():
 
 
 @app.post('/notify')
-def send_email():
-    print("Email send")
-    return {'status': 'success'}
+async def send_email():
+    print("Here")
+    for i in sample_emails:
+        print("Email send", i)
+
+    logging.info('Subscriber received the post')
