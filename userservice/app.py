@@ -1,13 +1,5 @@
+from dapr.clients import DaprClient
 import json
-import time
-import logging
-import requests
-
-logging.basicConfig(level=logging.INFO)
-
-base_url = 'http://127.0.0.1:3500'
-
-headers = {'dapr-app-id': 'blog-processor', 'content-type': 'application/json'}
 
 payload = {
     "title": "Dapr",
@@ -15,11 +7,7 @@ payload = {
     "content": "This is the dapr introduction."
 }
 
-result = requests.post(
-    url='%s/blogpost' % base_url,
-    data=json.dumps(payload),
-    headers=headers
-)
-print(result.text)
+with DaprClient() as d:
+    resp = d.invoke_method('blog-processor', 'blogpost', data=json.dumps(payload), http_verb='post')
 
-time.sleep(1)
+print('user', resp.text())
